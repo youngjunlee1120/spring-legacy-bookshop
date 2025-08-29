@@ -14,10 +14,10 @@
 		</div>
 		
 		<div>
-			<form method="post">
+			<form method="post" name="signup_form">
 				<div>
 					<div><label>아이디:</label></div>
-					<div><input type="text" name="id"></div>
+					<div><input type="text" name="id"><button type="button" id="check_id">중복확인</button></div>
 				</div>
 				
 					<div><label>비밀번호:</label></div><div>
