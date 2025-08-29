@@ -57,8 +57,13 @@ public class RootController {
 
 	@ResponseBody
 	@GetMapping("/check_id/{id}")
-	String checkId(@PathVariable String id) {
-		System.out.println(id);
-		return "OK";
+	String checkId(@PathVariable String id) throws Exception {
+//		Thread thread = new Thread();
+//		thread.sleep(2 * 1000);
+
+		if (service.checkId(id)) {
+			return "OK";
+		}
+		return "FAIL";
 	}
 }

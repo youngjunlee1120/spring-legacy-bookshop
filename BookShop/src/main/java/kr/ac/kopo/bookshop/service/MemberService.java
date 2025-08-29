@@ -18,4 +18,6 @@ public interface MemberService {
 
 	boolean login(Member member);
 
+	boolean checkId(String id);
+
 }

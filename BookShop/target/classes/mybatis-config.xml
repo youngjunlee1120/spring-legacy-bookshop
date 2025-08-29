@@ -8,9 +8,11 @@
 
 <typeAliases>
 	<typeAlias type="kr.ac.kopo.bookshop.model.Member" alias="Member" />
+	<typeAlias type="kr.ac.kopo.bookshop.model.Book" alias="Book"/>
 </typeAliases>
 
 <mappers>
 	<mapper resource="mapper/member.xml"/>
+	<mapper resource="mapper/book.xml"/>
 </mappers>
 </configuration>
