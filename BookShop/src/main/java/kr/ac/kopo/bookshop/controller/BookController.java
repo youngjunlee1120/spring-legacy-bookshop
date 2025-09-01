@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.ac.kopo.bookshop.model.Book;
+import kr.ac.kopo.bookshop.pager.Pager;
 import kr.ac.kopo.bookshop.service.BookService;
 
 @Controller
@@ -21,9 +22,23 @@ public class BookController {
 	@Autowired
 	BookService service;
 
+	@GetMapping("/dummy")
+	String dummy() {
+		service.dummy();
+
+		return "redirect:list";
+	}
+
+	@GetMapping("/init")
+	String init() {
+		service.init();
+
+		return "redirect:list";
+	}
+
 	@GetMapping("/list")
-	String list(Model model) {
-		List<Book> list = service.list();
+	String list(Model model, Pager pager) {
+		List<Book> list = service.list(pager);
 		model.addAttribute("list", list);
 		return path + "list";
 	}
