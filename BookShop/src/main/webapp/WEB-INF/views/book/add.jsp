@@ -25,7 +25,7 @@
 			
 			<div>
 				<div><label>가격</label></div>
-				<div><input type="text" name="price"></div>
+				<div><input type="number" name="price"></div>
 			</div>
 			
 			<div>

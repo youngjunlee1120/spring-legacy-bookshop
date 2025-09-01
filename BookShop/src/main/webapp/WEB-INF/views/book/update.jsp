@@ -16,7 +16,7 @@
 			<form method="post">
 				<div>
 					<div><label>시퀀스</label></div>
-					<div><input type="text" name="code" value="${item.code}" readonly="readonly"></div>
+					<div><input type="number" name="code" value="${item.code}" readonly="readonly"></div>
 				</div>
 				
 				<div>
