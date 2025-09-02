@@ -5,9 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <title>도서 관리 시스템</title>
+<jsp:include page="../include/head.jsp"></jsp:include>
 </head>
 <body>
 <div class="container">
@@ -62,7 +61,8 @@
 					<td>${item.publisher}</td>
 					<td>${item.price}</td>
 					<td>${item.pubDate}</td>
-					<td><a href="update/${item.code}">변경</a> <a href="delete/${item.code}">삭제</a></td>
+					<td><a href="update/${item.code}" class="btn btn-warning"><i class="bi bi-tools"></i>변경</a> 
+					<a href="delete/${item.code}" class="btn btn-danger"><i class="bi bi-trash">삭제</a></td>
 				</tr>
 				</c:forEach>
 			</tbody>
@@ -70,16 +70,16 @@
 			<tfoot>
 				<tr>
 					<td colspan="6">
-						<div>
-							<div><a href="?page=1${pager.query}">처음</a></div>
-							<div><a href="?page=${pager.prev}${pager.query}">이전</a></div>
+						<div class="pagination pagination-sm justify-content-center">
+							<div class="page-item"><a href="?page=1${pager.query}" class="page-link">처음</a></div>
+							<div class="page-item"><a href="?page=${pager.prev}${pager.query}" class="page-link">이전</a></div>
 							
 							<c:forEach var="page" items="${pager.list}">
-								<div><a href="?page=${page}${pager.query}">${page}</a></div>
+								<div class="page-item ${pager.page == page ? 'active' : ''}"><a href="?page=${page}${pager.query}" class="page-link">${page}</a></div>
 							</c:forEach>
 							
-							<div><a href="?page=${pager.next}${pager.query}">다음</a></div>
-							<div><a href="?page=${pager.last}${pager.query}">마지막</a></div>
+							<div class="page-item"><a href="?page=${pager.next}${pager.query}" class="page-link">다음</a></div>
+							<div class="page-item"><a href="?page=${pager.last}${pager.query}" class="page-link">마지막</a></div>
 						</div>
 					</td>
 				</tr>
@@ -87,11 +87,13 @@
 		</table>
 	</div>
 	
-	<div>
-		<div><a href="dummy">대량 등록</a></div>
-		<div><a href="init">초기화</a></div>
-		<div><a href="add">등록</a></div>
-		<div><a href="..">이전</a></div>
+	<div class="row">	
+		<div class="col-6"></div>
+		<div class="col d-grid"><a href="dummy" class="btn btn-info btn-sm">대량 등록</a></div>
+		<div class="col d-grid"><a href="init" class="btn btn-danger btn-sm">초기화</a></div>
+		<div class="col d-grid"><a href="add" class="btn btn-primary btn-sm">등록</a></div>
+		<div class="col d-grid"><a href=".." class="btn btn-secondary btn-sm">이전</a></div>
+		
 	</div>
 </div>
 </body>
