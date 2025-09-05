@@ -1,6 +1,7 @@
 package kr.ac.kopo.bookshop.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,9 +10,10 @@ public class Book {
 	private String title;
 	private String publisher;
 	private int price;
-
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate pubDate;
+
+	private List<Attach> attachs;
 
 	public Long getCode() {
 		return code;
@@ -51,6 +53,14 @@ public class Book {
 
 	public void setPubDate(LocalDate pubDate) {
 		this.pubDate = pubDate;
+	}
+
+	public List<Attach> getAttachs() {
+		return attachs;
+	}
+
+	public void setAttachs(List<Attach> attachs) {
+		this.attachs = attachs;
 	}
 
 }

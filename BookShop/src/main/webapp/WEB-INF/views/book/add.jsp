@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <jsp:include page="../include/head.jsp"></jsp:include>
 <title></title>
+<script src="${pageContext.request.contextPath}/js/book/add.js"></script>
 </head>
 <body>
 <div class="container">
@@ -15,7 +16,7 @@
 		<div class="col-3"></div>
 		<div class="col">
 		<div><h3>도서 등록</h3></div>
-		<form method="post">
+		<form method="post" enctype="multipart/form-data">
 			<div class="row mb-2">
 				<div class="col-2"><label>도서명</label></div>
 				<div class="col"><input type="text" name="title" class="form-control form-control-sm"></div>
@@ -35,6 +36,19 @@
 				<div class="col-2"><label>출판일</label></div>
 				<div class="col"><input type="date" name="pubDate" class="form-control form-control-sm"></div>
 			</div>
+			
+			<div class="row mb-2">
+				<div class="col-2"><label>이미지</label></div>
+				<div class="col"><div class="btn btn-primary btn-sm" id="image_add">추가</div></div>
+			</div>
+			
+			<div class="row mb-2">
+			<div class="col-2"></div>
+				<ul class="col" id="files">
+					<li><input type="file" name="uploadFile" class="form-control form-control-sm mb-2"></li>				
+				</ul>
+			</div>
+				
 			
 			<div class="row mb-2">
 				<div class="col-3"></div>
