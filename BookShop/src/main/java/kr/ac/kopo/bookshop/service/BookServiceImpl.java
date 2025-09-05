@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.bookshop.dao.BookDao;
+import kr.ac.kopo.bookshop.model.Attach;
 import kr.ac.kopo.bookshop.model.Book;
 import kr.ac.kopo.bookshop.pager.Pager;
 
@@ -26,6 +27,12 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public void add(Book item) {
 		dao.add(item);
+
+		for (Attach image : item.getAttachs()) {
+			image.setBookCode(item.getCode());
+
+			dao.addAttach(image);
+		}
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.kopo.bookshop.model.Attach;
 import kr.ac.kopo.bookshop.model.Book;
 import kr.ac.kopo.bookshop.pager.Pager;
 
@@ -45,6 +46,11 @@ public class BookDaoImpl implements BookDao {
 	@Override
 	public int total(Pager pager) {
 		return sql.selectOne("book.total", pager);
+	}
+
+	@Override
+	public void addAttach(Attach image) {
+		sql.insert("book.add_attach", image);
 	}
 
 }

@@ -2,6 +2,7 @@ package kr.ac.kopo.bookshop.dao;
 
 import java.util.List;
 
+import kr.ac.kopo.bookshop.model.Attach;
 import kr.ac.kopo.bookshop.model.Book;
 import kr.ac.kopo.bookshop.pager.Pager;
 
@@ -18,5 +19,7 @@ public interface BookDao {
 	void update(Book item);
 
 	int total(Pager pager);
+
+	void addAttach(Attach image);
 
 }

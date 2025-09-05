@@ -41,6 +41,11 @@
   	<insert id="add">
   		INSERT INTO BOOK
   		 VALUES (BOOK_SEQ.NEXTVAL, #{title}, #{publisher}, #{price}, #{pubDate})
+  		 
+  		 <!-- 현재 시퀀스 값을 유지함 -> 트랜잭션 발동 -->
+  		 <selectKey keyProperty="code" resultType="Long" order="AFTER">
+  		 	SELECT BOOK_SEQ.currval FROM dual
+  		 </selectKey>
   	</insert>
   	
   	<delete id="delete">
@@ -57,5 +62,10 @@
   		 SET title=#{title}, publisher=#{publisher}, price=#{price}, pub_date=#{pubDate}
   		  WHERE code=#{code}
   	</update>
-
+	
+	<insert id="add_attach">
+		INSERT INTO attach
+		VALUES (IMAGE_SEQ.NEXTVAL, #{bookCode}, #{filename}, #{uuid})
+	</insert>
+	
   </mapper>

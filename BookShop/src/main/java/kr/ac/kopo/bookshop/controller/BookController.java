@@ -1,6 +1,10 @@
 package kr.ac.kopo.bookshop.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import kr.ac.kopo.bookshop.model.Attach;
 import kr.ac.kopo.bookshop.model.Book;
 import kr.ac.kopo.bookshop.pager.Pager;
 import kr.ac.kopo.bookshop.service.BookService;
@@ -18,6 +24,7 @@ import kr.ac.kopo.bookshop.service.BookService;
 @RequestMapping("/book")
 public class BookController {
 	final String path = "book/";
+	final String uploadPath = "d:/upload/";
 
 	@Autowired
 	BookService service;
@@ -49,9 +56,35 @@ public class BookController {
 	}
 
 	@PostMapping("/add")
-	String add(Book item) {
+	String add(Book item, MultipartFile[] uploadFile) {
+		if (uploadFile != null) {
+
+			// 목록만들기
+			List<Attach> attachs = new ArrayList<Attach>();
+
+			for (MultipartFile file : uploadFile) {
+				String filename = file.getOriginalFilename();
+				String uuid = UUID.randomUUID().toString();
+
+				try {
+					file.transferTo(new File(uploadPath + uuid + "_" + filename));
+
+					Attach image = new Attach();
+					image.setFilename(filename);
+					image.setUuid(uuid);
+
+					attachs.add(image);
+				} catch (IllegalStateException | IOException e) {
+
+					System.out.println(e.getLocalizedMessage());
+				}
+			}
+
+			item.setAttachs(attachs);
+		}
+
 		service.add(item);
-		System.out.println(item);
+
 		return "redirect:list";
 	}
 
