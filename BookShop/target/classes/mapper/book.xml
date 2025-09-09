@@ -52,9 +52,22 @@
   		DELETE FROM BOOK WHERE code = #{code}
   	</delete>
   	
-  	<select id="item" resultType="Book">
-  		SELECT * FROM book 
-  		WHERE code=#{code}
+  	<resultMap type="Book" id="BookMap" autoMapping="true">
+  		<id column="code" property="code"/>
+  		
+  		<collection property="attachs" column="book_code" javaType="ArrayList" ofType="Attach" autoMapping="true">
+  			<id column="attach_code" property="code"/>
+  		</collection>
+  	</resultMap>
+  	
+  	<select id="item" resultMap="BookMap">
+  		SELECT 
+  		 b.*,
+  		 a.*,
+  		 a.code attach_code
+  		FROM book b
+  		LEFT JOIN attach a ON b.code=a.book_code
+  		WHERE b.code=#{code}
   	</select>
   	
   	<update id="update">
@@ -67,5 +80,10 @@
 		INSERT INTO attach
 		VALUES (IMAGE_SEQ.NEXTVAL, #{bookCode}, #{filename}, #{uuid})
 	</insert>
+	
+	<delete id="delete_attach">
+		DELETE FROM attach
+		WHERE code=#{code}
+	</delete>
 	
   </mapper>

@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <jsp:include page="../include/head.jsp"></jsp:include>
+<script src="${pageContext.request.contextPath}/js/book/update.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -44,6 +46,21 @@
 					<div class="col"><input type="date" name="pubDate" value="${item.pubDate}" class="form-control form-control-sm"></div>
 				</div>
 				
+				<div>
+					<ul>
+				<c:if test="${item.attachs.size() < 1 }">
+					<li>첨부 된 이미지가 없습니다</li>
+				</c:if>
+				
+				<c:forEach var="attach" items="${item.attachs}">
+					<li>
+					<img width="150" height="150" src="${pageContext.request.contextPath}/upload/${attach.uuid}_${attach.filename}">
+					<div class="btn btn-danger btn-sm ml-2 delete" data-code="${attach.code}" >삭제</div>
+					</li>
+				</c:forEach>
+					</ul>
+				</div>
+				
 				<div class="row mb-2">
 					<div class="col-3"></div>
 					<div class="col d-grid"><button class="btn btn-primary btn-sm">변경</button></div>
@@ -51,6 +68,9 @@
 					<div class="col-3"></div>
 				</div>
 			</form>
+			
+				
+			
 			</div>
 			<div class="col-3"></div>
 		</div>

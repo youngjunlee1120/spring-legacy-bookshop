@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.kopo.bookshop.model.Attach;
@@ -28,6 +29,22 @@ public class BookController {
 
 	@Autowired
 	BookService service;
+
+	@ResponseBody
+	@GetMapping("/attach/delete/{code}")
+	String deleteAttach(@PathVariable Long code) {
+		if (service.deleteAttach(code))
+			return "OK";
+		return "FAIL";
+	}
+
+	@GetMapping("/detail/{code}")
+	String detail(@PathVariable Long code, Model model) {
+		Book item = service.item(code);
+
+		model.addAttribute("item", item);
+		return path + "detail";
+	}
 
 	@GetMapping("/dummy")
 	String dummy() {
