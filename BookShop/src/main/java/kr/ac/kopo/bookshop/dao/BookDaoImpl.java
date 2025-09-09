@@ -53,4 +53,10 @@ public class BookDaoImpl implements BookDao {
 		sql.insert("book.add_attach", image);
 	}
 
+	@Override
+	public int deleteAttach(Long code) {
+
+		return sql.delete("book.delete_attach", code);
+	}
+
 }

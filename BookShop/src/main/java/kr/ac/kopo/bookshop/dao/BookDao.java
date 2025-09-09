@@ -22,4 +22,6 @@ public interface BookDao {
 
 	void addAttach(Attach image);
 
+	int deleteAttach(Long code);
+
 }

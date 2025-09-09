@@ -19,4 +19,6 @@ public interface BookService {
 	void dummy();
 
 	void init();
+
+	boolean deleteAttach(Long code);
 }

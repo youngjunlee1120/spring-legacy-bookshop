@@ -57,7 +57,7 @@
 				<c:forEach var="item" items="${list}">
 				<tr>
 					<td>${item.code}</td>
-					<td>${item.title}</td>
+					<td><a href="detail/${item.code}">${item.title}</a></td>
 					<td>${item.publisher}</td>
 					<td>${item.price}</td>
 					<td>${item.pubDate}</td>

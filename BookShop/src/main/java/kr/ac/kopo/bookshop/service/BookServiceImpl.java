@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.kopo.bookshop.dao.BookDao;
 import kr.ac.kopo.bookshop.model.Attach;
@@ -24,6 +25,7 @@ public class BookServiceImpl implements BookService {
 		return dao.list(pager);
 	}
 
+	@Transactional
 	@Override
 	public void add(Book item) {
 		dao.add(item);
@@ -75,6 +77,13 @@ public class BookServiceImpl implements BookService {
 			dao.delete(item.getCode());
 		}
 
+	}
+
+	@Override
+	public boolean deleteAttach(Long code) {
+		if (dao.deleteAttach(code) == 1)
+			return true;
+		return false;
 	}
 
 }

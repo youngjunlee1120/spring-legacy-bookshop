@@ -9,6 +9,7 @@
 <typeAliases>
 	<typeAlias type="kr.ac.kopo.bookshop.model.Member" alias="Member" />
 	<typeAlias type="kr.ac.kopo.bookshop.model.Book" alias="Book"/>
+	<typeAlias type="kr.ac.kopo.bookshop.model.Attach" alias="Attach"/>
 </typeAliases>
 
 <mappers>
